@@ -35,29 +35,18 @@ ncp(source, destination, function (err) {
 });
 ```
 
-You can also call ncp like `ncp(source, destination, options, callback)`. 
+You can also call ncp like `'ncp(source, destination, options, callback)'`.
+
 `options` should be a dictionary. Currently, such options are available:
 
-  * `options.filter` - a `RegExp` instance, against which each file name is
-  tested to determine whether to copy it or not, or a function taking single
-  parameter: copied file name, returning `true` or `false`, determining
-  whether to copy file or not.
+| Option  | Desciption |
+| ------------- | ------------- |
+| `options.filter`  | a `RegExp` instance,against which each file name is tested to determine whether to copy it or not, or a function taking single parameter: copied file name, returning `true` or `false`, determining whether to cop file or not. |
+| `options.transform`   | a function: `function (read, write) { read.pipe(write) }` used to apply streaming transforms while copying.  |
+| `options.clobber`  | boolean=true. if set to false, `ncp` will not overwrite destination files that already exist.  |
+| `options.dereference`  | boolean=false. If set to true, `ncp` will follow symbolic links. For example, a symlink in the source tree pointing to a regular file will become a regular file in the destination tree. Broken symlinks will result in  errors.  |
+| `options.stopOnErr`  | boolean=false.  If set to true, `ncp` will behave like `cp -r`, and stop on the first error it encounters. By default `ncp` continues copying, logging all errors and returning an array.  |
+| `options.errs`  | stream. If `options.stopOnErr` is `false`, a stream can be provided, and errors will be written to this stream.  |
 
-  * `options.transform` - a function: `function (read, write) { read.pipe(write) }`
-  used to apply streaming transforms while copying.
-
-  * `options.clobber` - boolean=true. if set to false, `ncp` will not overwrite 
-  destination files that already exist.
-
-  * `options.dereference` - boolean=false. If set to true, `ncp` will follow symbolic
-  links. For example, a symlink in the source tree pointing to a regular file
-  will become a regular file in the destination tree. Broken symlinks will result in
-  errors.
-
-  * `options.stopOnErr` - boolean=false.  If set to true, `ncp` will behave like `cp -r`,
-  and stop on the first error it encounters. By default, `ncp` continues copying, logging all
-  errors and returning an array.
-
-  * `options.errs` - stream. If `options.stopOnErr` is `false`, a stream can be provided, and errors will be written to this stream.
-
+## add issues 
 Please open an issue if any bugs arise.  As always, I accept (working) pull requests, and refunds are available at `/dev/null`.
