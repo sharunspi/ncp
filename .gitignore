@@ -2,3 +2,4 @@ node_modules
 .*.sw[op]
 .DS_Store
 test/*fixtures/out
+package-lock.json
